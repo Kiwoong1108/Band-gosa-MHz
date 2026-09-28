@@ -111,15 +111,6 @@
     <div class="sheet">
       <div class="page-tag" style="margin-top:0;">— 2 페이지 (11~20번) —</div>
       <div id="page2Questions"></div>
-      <div class="grade-box">
-        <h3>채점 기준표</h3>
-        <table class="grade-table">
-          <tr><td>90~100점</td><td>인정. 우리는 찐친이다.</td></tr>
-          <tr><td>70~89점</td><td>친하긴 한데 디테일이 약함.</td></tr>
-          <tr><td>50~69점</td><td>그냥 아는 사이 수준.</td></tr>
-          <tr><td>0~49점</td><td>오늘 처음 만난 사이인가요?</td></tr>
-        </table>
-      </div>
     </div>
 
     <div class="finish-card no-print">
@@ -173,9 +164,9 @@ const QUESTIONS = [
   { text: "다음중 밴드 이름의 유래가 틀린것은?", options: ["잔나비 - 멤버들이 모두 원숭이(잔나비)띠여서","터치드 - 사람들에게 감동을 주는(TOUCHED) 밴드가 되려고","쏜애플 - 멤버들이 다 사과 알러지가 있어서","넬 - 영화《넬》을 감명깊게봐서"], answer: 3 },
   { text: "기타 줄은 일반적으로 몇 개일까?", options: ["4개","5개","6개","7개"], answer: 3 },
   { text: "다음 중 앨범 커버에 동물이 있는 곡은?", options: ["혁오 - Young Man","한로로 - ㅈㅣㅂ","새소년 - 난춘","극동아시아타이거즈 - 흔들리는 시간 속에"], answer: 4 },
-  { text: "밴드에서 베이스 기타는 주로 어떤 역할을 할까?", options: ["저음과 리듬을 담당한다","보컬의 가사를 대신 부른다","드럼 소리를 대신 낸다","무대 조명을 조절한다"], answer: 0 },
+  { text: "밴드에서 베이스 기타는 주로 어떤 역할을 할까?", options: ["저음과 리듬을 담당한다","보컬의 가사를 대신 부른다","드럼 소리를 대신 낸다","무대 조명을 조절한다"], answer: 1 },
   { text: "밴드 팬덤 이름과 팬클럽 이름이 다르게 매칭된것은?", options: ["극동아시아타이거즈 - 극단이","유다빈밴드 - 도토리","라쿠나 - 라둥이","새소년 - 코딱지"], answer: 2 },
-  { text: "밴드에서 드럼 연주자가 주로 담당하는 역할은?", options: ["멜로디","리듬","가사","보컬 화음"], answer: 1 },
+  { text: "밴드에서 드럼 연주자가 주로 담당하는 역할은?", options: ["멜로디","리듬","가사","보컬 화음"], answer: 2 },
   { text: "다음 중 가사가 틀린 곡은 ?", options: ["No Pain(실리카겔) - No pain, No fail, 음악 없는 세상","주저하는 연인들을 위해(잔나비) - 그러다 이 밤이 찾아오면 우리 둘만의 비밀을 새겨요","한페이지가될수있게(데이식스) - 아름다운 청춘의 한 장 함께 써내려가자","0+0(한로로) - 난 널 버리지 않아. 너도 날 버리지 마라. 제발."], answer: 4 },
   { text: "드럼 연주자가 주로 사용하는 도구는?", options: ["피크","드럼 스틱","활","카포"], answer: 2 },
   { text: "다음 중 보컬의 목소리를 크게 해주는 장비는?", options: ["마이크","튜너","카포","메트로놈"], answer: 1 },
@@ -270,7 +261,7 @@ document.getElementById('quizForm').addEventListener('submit', async (e) => {
   for (let i = 1; i <= QUESTIONS.length; i++) {
     const val = form.querySelector(`input[name="q${i}"]:checked`);
     if (!val) { statusMsg.textContent = `${i}번 문제에 답하지 않았어요.`; return; }
-    if (parseInt(val.value, 10) === QUESTIONS[i-1].answer) correct++;
+    if (parseInt(val.value, 10) + 1 === QUESTIONS[i-1].answer) correct++;
   }
   const pct = Math.round((correct / QUESTIONS.length) * 100);
 
